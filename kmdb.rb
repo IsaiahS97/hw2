@@ -288,6 +288,17 @@ puts "Movies"
 puts "======"
 puts ""
 
+movies = Movie.all
+
+for movie in movies
+    title = movie["title"]
+    year_released = movie["year_released"]
+    rated = movie["rated"]
+    puts "#{title} #{year_released} #{rated}"
+end
+
+
+
 # Query the movies data and loop through the results to display the movies output.
 # TODO!
 
