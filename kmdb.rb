@@ -290,11 +290,21 @@ puts ""
 
 movies = Movie.all
 
+
 for movie in movies
+    # query to find title, year released, and rating for movie (in movies table)
     title = movie["title"]
     year_released = movie["year_released"]
     rated = movie["rated"]
-    puts "#{title} #{year_released} #{rated}"
+
+    # query to find studio for this title 
+    studio = Studio.find_by({"id" => movie["studio_id"]})
+
+    # read the name column from the studio row 
+    studio_name = studio["name"]
+
+    #display string with title, year released, rating, and studio name
+    puts "#{title}  #{year_released} #{rated}   #{studio_name}"
 end
 
 
@@ -308,5 +318,29 @@ puts "Top Cast"
 puts "========"
 puts ""
 
+
 # Query the cast data and loop through the results to display the cast output for each movie.
 # TODO!
+
+
+roles = Role.all
+
+for role in roles
+    # query role 
+    character = role["character_name"]
+
+    # query to find actor for this title 
+    actor = Actor.find_by({"id" => role["actor_id"]})
+
+    # read the name column from the actor row 
+    actor_name = actor["name"]
+
+     # query to find movie for this title 
+     movie = Movie.find_by({"id" => role["movie_id"]})
+
+     # read the name column from the movie title row 
+     movie_name = movie["title"]
+
+    #display string with movie name, actor name, and role played 
+    puts "#{movie_name}  #{actor_name} #{character}"
+end
